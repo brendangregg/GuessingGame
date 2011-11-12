@@ -1,0 +1,84 @@
+(*   
+  guess.mod2 - guessing game in Modula-2
+
+  This is written to demonstrate this language versus the same program 
+  written in other languages.
+
+  COMPILE: Gardens Point Modula-2,
+	gpm guess.mod2
+	build guess
+
+  20-Oct-2004   Brendan Gregg   Created this.
+*)
+
+MODULE Guess;
+
+IMPORT InOut;
+IMPORT TextInOut;
+IMPORT UxFiles;
+IMPORT Random;
+FROM InOut IMPORT EOL;
+FROM ProgArgs IMPORT UNIXtime;
+FROM SYSTEM IMPORT ROUND;
+
+CONST
+	scorefile = "highscores_mod2";
+VAR
+	answer,num,guess : INTEGER;
+	char : CHAR;
+	file : UxFiles.File;
+	done : BOOLEAN;
+BEGIN
+	num := 0;
+
+	InOut.WriteString("guess.mod2 - Guess a number between 1 and 100"); 
+	InOut.WriteLn; InOut.WriteLn;
+
+	(* Generate random number *)
+	Random.InitRandom(FLOAT(UNIXtime()));
+	answer := ROUND(Random.Random() * 99.0) + 1;
+
+	(* Play game *)
+        REPEAT
+                INC(num);
+                InOut.WriteString("Enter guess ");
+                InOut.WriteInt(num,1);
+                InOut.WriteString(": "); 
+		InOut.ReadInt(guess);
+		IF guess < answer THEN
+			InOut.WriteString("Higher..."); InOut.WriteLn;
+		ELSIF guess > answer THEN
+			InOut.WriteString("Lower..."); InOut.WriteLn;
+		END;
+        UNTIL (guess = answer);
+        InOut.WriteString("Correct! That took ");
+	InOut.WriteInt(num,1);
+	InOut.WriteString(" guesss."); InOut.WriteLn;
+
+	(* Save high score *)
+	UxFiles.Open(file,scorefile,UxFiles.ReadWrite,done);
+	REPEAT
+		TextInOut.Read(file,char);
+	UNTIL (UxFiles.EndFile(file));
+	InOut.WriteLn; InOut.WriteString("Please enter your name: ");
+	InOut.Read(char);
+	WHILE char <> EOL DO
+		TextInOut.Write(file,char);
+		InOut.Read(char);
+	END;
+	TextInOut.WriteString(file,"	");
+	TextInOut.WriteInt(file,num,1);
+	TextInOut.WriteLn(file);
+	UxFiles.Close(file,done);
+
+	(* Print high scores *)
+	InOut.WriteLn; 
+	InOut.WriteString("Previous high scores,"); InOut.WriteLn;
+	UxFiles.Open(file,scorefile,UxFiles.ReadOnly,done);
+	REPEAT
+		TextInOut.Read(file,char);
+		InOut.Write(char);
+	UNTIL (UxFiles.EndFile(file));
+	UxFiles.Close(file,done);
+
+END Guess.

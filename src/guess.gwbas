@@ -1,0 +1,44 @@
+1 REM guess.gwbas - guessing game in GW-BASIC
+2 REM
+3 REM This is written to demonstrate this language versus the same program
+4 REM written in other languages.
+5 REM
+6 REM RUN: Load using the 8x3 filename, eg LOAD"GUESS~1.GWB"
+7 REM
+8 REM 17-Oct-2004   Brendan Gregg   Created this.
+
+10 scorefile$ = "highscores_gwbas"
+20 num = 0
+
+30 PRINT "guess.gwbas - Guess a number between 1 and 100"
+40 PRINT
+
+50 REM Generate Random number
+60 RANDOMIZE TIMER
+70 answer = INT(RND * 99) + 1
+
+100 REM Play Game
+110 num = num + 1
+120 PRINT "Enter guess"; num;
+130 INPUT ": ", guess
+140 IF guess < answer THEN PRINT "Higher..."
+150 IF guess > answer THEN PRINT "Lower..."
+160 IF guess <> answer THEN GOTO 110
+200 PRINT "Correct! That took"; num; "guesses"
+210 PRINT
+
+300 REM Save high score
+310 INPUT "Please enter your name: "; n$
+320 OPEN scorefile$ FOR APPEND AS #1
+330 PRINT #1, n$, num
+340 CLOSE #1
+
+400 REM Print high scores
+410 PRINT
+420 PRINT "Previous high scores,"
+430 OPEN scorefile$ FOR INPUT AS #2
+440 WHILE NOT EOF(2)
+450 INPUT #2, l$
+460 PRINT l$
+470 WEND
+480 CLOSE #2

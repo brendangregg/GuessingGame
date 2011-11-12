@@ -1,0 +1,105 @@
+/*
+  guess.bcpl - guessing game in BCPL
+
+  This is written to demonstrate this language versus the same program 
+  written in other languages.
+
+  RUN: BCPL CINTCODE,
+	 cinterp
+	 > bcpl guess.bcpl to guess
+	 > guess
+ 
+  23-Oct-2004	Brendan Gregg	Created this.
+*/
+
+GET "libhdr"
+GLOBAL { seed; stdin; stdout }
+
+LET start() = VALOF
+$( 
+	LET scorefile = "highscores_bcpl"
+	LET guess, num, answer = -1, 0, 0
+	LET scores = VEC 8192
+	LET line = VEC 128
+	LET name = VEC 64
+	LET seed, file, char, last, pos = 1, 0, '.', 0, 0
+
+	writes("guess.bcpl - Guess a number between 1 and 100*n*n")
+
+
+	// *** Generate random number ***
+	answer := rndno(100)
+
+
+	// *** Play game ***
+	UNTIL guess = answer {
+		num := num + 1
+		// ...(needing the *n may be a compiler bug),
+		writef("Enter guess %n: *n",num) 
+		guess := readn()
+		IF guess < answer DO writes("Higher...*n")
+		IF guess > answer DO writes("Lower...*n")
+	} 
+	writef("Correct! That took %n guesses.*n*n",num);
+	
+
+	// *** Save high score ***
+	writes("Please enter your name: *n")
+	stdin := input()
+	// ... appends don't exist, so first we read the original,
+	file := findinput(scorefile)
+	selectinput(file)
+	{ 
+		char := rdch()
+		IF char = endstreamch BREAK
+		scores!pos := char
+		pos := pos + 1
+	} REPEAT
+	endread()
+	selectinput(stdin)
+	stdout := output()
+	// ... now we rewrite the original,
+	file := findoutput(scorefile)
+	selectoutput(file)
+	last := pos - 1
+	FOR pos = 0 TO last DO
+	{
+		wrch(scores!pos)
+	}
+	// ... (needing this rdch may be a compiler bug), 
+	char := rdch()
+	{
+		// ... now add the new score,
+		char := rdch()
+		IF char = '*n' BREAK
+		wrch(char)
+	} REPEAT
+	writef(" %n*n",num);
+	endwrite();
+	selectoutput(stdout)
+
+
+	// *** Print high scores ***
+	writes("*nPrevious high scores,*n")
+	file := findinput(scorefile)
+	selectinput(file)
+	{ 
+		char := rdch()
+		IF char = endstreamch BREAK
+		writef("%c",char)
+	} REPEAT
+	endread()
+
+	RESULTIS 0
+$)
+
+// Machine independent random numbers
+// based on Irreducible polynomial 21042107357(E) of degree 31
+// Peterson,W.W. and Weldon,E.J. Error Correcting Codes, p.492
+AND rndno(upb) = VALOF // 31 bit CRC random numbers
+{ TEST (seed&1)=0 THEN	seed := seed>>1
+		  ELSE	seed := seed>>1 NEQV #x7BB88888
+  RESULTIS seed REM upb + 1
+}
+// - from the BCPL cintcode distribution
+

@@ -1,0 +1,55 @@
+%!PS
+%
+% guess.ps - guessing game in Postscript V2
+%
+% Needs stdio to be enabled - so don't use this on your printer.
+%
+% This is written to demonstrate this language versus the same program
+% written in other languages.
+%
+% 10-Jan-2005	Rex di Bona	Created this.
+
+realtime srand
+/answer rand cvi 100 mod 1 add def
+/num 0 def
+/str 1024 string def
+/STDIN (%stdin) (r) file def
+(guess.ps - Guess a number between 1 and 100\n) print flush
+
+{
+	/num num 1 add def
+	(Enter guess ) print
+	num cvi str cvs print
+	(: ) print flush
+	STDIN str readline not { (Bye Bye\n) print flush quit } if
+	cvi /guess exch def
+	guess answer eq { exit } if
+	guess answer lt { (Higher...\n) } { (Lower...\n) } ifelse print
+} loop
+(Correct! that took ) print
+num cvi str cvs print
+( guesses.\n) print flush
+
+%
+% Save High Score
+%
+/HS (highscores_ps) (a) file def
+(Please enter your name: ) print flush
+STDIN str readline not { (Sorry, Bye Bye\n) print flush quit } if
+HS exch writestring
+HS ( ) writestring
+HS num cvi str cvs writestring
+HS (\n) writestring
+HS flushfile HS closefile
+
+%
+% Print high scores
+%
+(Previous high scores,\n) print
+/HS1 (highscores_ps) (r) file def
+{
+	HS1 str readline { print } { exit } ifelse
+	(\n) print
+} loop
+HS1 closefile
+flush

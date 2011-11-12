@@ -1,0 +1,81 @@
+The following demonstrates where I'm at with the INTERCAL version of the 
+guessing game. Formatting is the best it can be, at it looks like 
+I need to write a File I/O library to save the highscore list. 
+(This has required writing boolean subroutines for numerical tests).
+
+As is the norm with INTERCAL, the input is in words (SEVEN FIVE = 75) and
+the output is in roman numerals (IV = 4).
+
+C-INTERCAL demo:
+
+   ~/intercal-0.22/pit> ../ick guess.i
+   ~/intercal-0.22/pit> ./guess
+   guess.i - Guess a number between 1 and 100
+   
+   Guess number, 
+   I
+   Enter guess,
+   FIVE OH
+   
+   Higher...
+   
+   Guess number,  
+   II
+   Enter guess,
+   SEVEN FIVE
+   
+   Higher...
+   
+   Guess number,   
+   III
+   Enter guess,
+   EIGHT NINER
+   
+   Lower...
+   
+   Guess number,  
+   IV
+   Enter guess,
+   EIGHT TWO
+   
+   Higher...
+   
+   Guess number, 
+   V
+   Enter guess,
+   EIGHT FIVE
+   
+   Correct! that took, 
+   V
+   guesses.
+
+
+
+J-INTERCAL demo:
+
+   ~/intercal-java/samples> jick guess.i
+   ~/intercal-java/samples> java guess
+   guess.i - Guess a number between 1 and 100
+   
+   Guess number, 
+   I
+   Enter guess,
+   FIVE OH
+   
+   Lower...
+   
+   Guess number,  
+   II
+   Enter guess,
+   TWO OH
+   
+   Lower...
+   
+   Guess number,   
+   III
+   Enter guess,
+   ONE OH
+   
+   Correct! that took,   
+   III
+   guesses.

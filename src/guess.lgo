@@ -1,0 +1,51 @@
+; guess.lgo - guessing game in logo
+;
+; This is written to demonstrate this language versus the same program 
+; written in other languages.
+;
+; 17-Oct-2004	Brendan Gregg	Created this.
+
+make "scorefile "highscores_lgo
+make "num 0
+
+print [guess.lgo - Guess a number between 1 and 100]
+print "
+
+;;; Generate random number
+make "answer (random 99) + 1
+
+;;; Play game
+to play
+make "num (:num + 1)
+type (se "Enter "guess :num ":)
+make "guess readword
+if :guess < :answer [print "Higher...]
+if :guess > :answer [print "Lower...]
+if not :guess=:answer [play]
+end
+play
+print (se "Correct! "That "took :num "guesses.)
+print "
+
+;;; Save high score
+type [Please enter your name: ]
+make "name readlist
+openappend :scorefile
+setwrite :scorefile
+print (se :name :num)
+close :scorefile
+setwrite []
+
+;;; Print high scores
+print "
+print [Previous high scores,]
+openread :scorefile
+setread :scorefile
+to scores
+make "line readlist
+print :line
+if not eofp [scores]
+end
+scores
+
+bye

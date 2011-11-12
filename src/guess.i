@@ -1,0 +1,218 @@
+PLEASE NOTE guess.i - guessing game in INTERCAL
+NOTE
+NOTE This is written to demonstrate this language versus the same program 
+NOTE written in other languages.
+NOTE 
+PLEASE NOTE A highscores file is not currently updated, first step is to
+NOTE write the File I/O library...
+NOTE
+PLEASE NOTE COMPILE: C-INTERCAL,
+NOTE		ick guess.i
+NOTE
+PLEASE NOTE COMPILE: J-INTERCAL,
+NOTE		jick guess.i
+NOTE
+NOTE 20-Oct-2004	Brendan Gregg	Created this.
+
+	DO .11 <- #0
+	PLEASE ABSTAIN FROM FORGETTING
+	DO ,1 <- #43
+	PLEASE DO ,1SUB#1 <- #26
+	DO ,1SUB#2 <- #56
+	DO ,1SUB#3 <- #8
+	DO ,1SUB#4 <- #216
+	DO ,1SUB#5 <- #0
+	DO ,1SUB#6 <- #90
+	DO ,1SUB#7 <- #222
+	PLEASE DO ,1SUB#8 <- #146
+	DO ,1SUB#9 <- #80
+	PLEASE DO ,1SUB#10 <- #176
+	DO ,1SUB#11 <- #34
+	DO ,1SUB#12 <- #52
+	DO ,1SUB#13 <- #8
+	DO ,1SUB#14 <- #216
+	DO ,1SUB#15 <- #0
+	PLEASE DO ,1SUB#16 <- #202
+	DO ,1SUB#17 <- #126
+	PLEASE DO ,1SUB#18 <- #130
+	DO ,1SUB#19 <- #142
+	DO ,1SUB#20 <- #200
+	DO ,1SUB#21 <- #248
+	DO ,1SUB#22 <- #112
+	DO ,1SUB#23 <- #160
+	DO ,1SUB#24 <- #88
+	PLEASE DO ,1SUB#25 <- #74
+	DO ,1SUB#26 <- #190
+	DO ,1SUB#27 <- #160
+	DO ,1SUB#28 <- #120
+	DO ,1SUB#29 <- #64
+	DO ,1SUB#30 <- #72
+	DO ,1SUB#31 <- #0
+	DO ,1SUB#32 <- #48
+	PLEASE DO ,1SUB#33 <- #114
+	DO ,1SUB#34 <- #120
+	PLEASE DO ,1SUB#35 <- #136
+	DO ,1SUB#36 <- #126
+	DO ,1SUB#37 <- #16
+	DO ,1SUB#38 <- #80
+	PLEASE DO ,1SUB#39 <- #34
+	DO ,1SUB#40 <- #120
+	DO ,1SUB#41 <- #128
+	DO ,1SUB#42 <- #0
+	DO ,1SUB#43 <- #188
+	PLEASE READ OUT ,1
+	DO ,1 <- #1
+	PLEASE DO ,1SUB#1 <- #0
+	PLEASE READ OUT ,1
+	PLEASE ABSTAIN FROM STASHING
+	DO ,2 <- #10
+	PLEASE DO ,2SUB#1 <- #62
+	DO ,2SUB#2 <- #124
+	DO ,2SUB#3 <- #176
+	DO ,2SUB#4 <- #208
+	DO ,2SUB#5 <- #112
+	DO ,2SUB#6 <- #88
+	DO ,2SUB#7 <- #218
+	DO ,2SUB#8 <- #0
+	DO ,2SUB#9 <- #0
+	DO ,2SUB#10 <- #36
+	PLEASE ABSTAIN FROM IGNORING
+	DO ,3 <- #9
+	PLEASE DO ,3SUB#1 <- #30
+	DO ,3SUB#2 <- #60
+	DO ,3SUB#3 <- #8
+	DO ,3SUB#4 <- #72
+	DO ,3SUB#5 <- #88
+	DO ,3SUB#6 <- #218
+	DO ,3SUB#7 <- #0
+	DO ,3SUB#8 <- #0
+	DO ,3SUB#9 <- #36
+	PLEASE REINSTATE FORGETTING
+	DO ,4 <- #13
+	PLEASE DO ,4SUB#1 <- #110
+	DO ,4SUB#2 <- #52
+	DO ,4SUB#3 <- #8
+	DO ,4SUB#4 <- #216
+	DO ,4SUB#5 <- #0
+	PLEASE DO ,4SUB#6 <- #202
+	DO ,4SUB#7 <- #142
+	DO ,4SUB#8 <- #200
+	DO ,4SUB#9 <- #248
+	DO ,4SUB#10 <- #112
+	DO ,4SUB#11 <- #160
+	DO ,4SUB#12 <- #88
+	DO ,4SUB#13 <- #26
+	PLEASE REINSTATE FORGETTING
+	DO ,5 <- #13
+	PLEASE DO ,5SUB#1 <- #146
+	DO ,5SUB#2 <- #44
+	DO ,5SUB#3 <- #72
+	DO ,5SUB#4 <- #136
+	DO ,5SUB#5 <- #88
+	PLEASE DO ,5SUB#6 <- #74
+	DO ,5SUB#7 <- #30
+	DO ,5SUB#8 <- #56
+	DO ,5SUB#9 <- #8
+	DO ,5SUB#10 <- #216
+	DO ,5SUB#11 <- #0
+	DO ,5SUB#12 <- #154
+	DO ,5SUB#13 <- #228
+	PLEASE REINSTATE STASHING
+	DO ,6 <- #19
+	PLEASE DO ,6SUB#1 <- #142
+	DO ,6SUB#2 <- #204
+	DO ,6SUB#3 <- #168
+	DO ,6SUB#4 <- #0
+	DO ,6SUB#5 <- #168
+	DO ,6SUB#6 <- #224
+	DO ,6SUB#7 <- #152
+	DO ,6SUB#8 <- #170
+	PLEASE DO ,6SUB#9 <- #128
+	DO ,6SUB#10 <- #214
+	DO ,6SUB#11 <- #24
+	DO ,6SUB#12 <- #144
+	DO ,6SUB#13 <- #88
+	PLEASE DO ,6SUB#14 <- #42
+	DO ,6SUB#15 <- #214
+	DO ,6SUB#16 <- #56
+	DO ,6SUB#17 <- #0
+	DO ,6SUB#18 <- #32
+	DO ,6SUB#19 <- #162
+	PLEASE REINSTATE IGNORING
+	DO ,7 <- #9
+	PLEASE DO ,7SUB#1 <- #78
+	DO ,7SUB#2 <- #56
+	DO ,7SUB#3 <- #8
+	DO ,7SUB#4 <- #216
+	DO ,7SUB#5 <- #0
+	DO ,7SUB#6 <- #40
+	DO ,7SUB#7 <- #216
+	DO ,7SUB#8 <- #90
+	DO ,7SUB#9 <- #36
+
+	PLEASE NOTE GENERATE RAND0M NUMBER
+	DO (1900) NEXT
+	DO .2 <- #662
+	DO (1040) NEXT
+	DO .1 <- .3
+	DO (1020) NEXT
+	DO .12 <- .1
+
+	PLEASE NOTE PLAY GAME
+(210)	DO FORGET #1
+	DO .1 <- .11
+	DO (1020) NEXT
+	DO .11 <- .1
+	DO READ OUT ,4
+	DO READ OUT .11
+	DO READ OUT ,5
+	PLEASE WRITE IN .13
+	DO READ OUT ,1
+	DO .1 <- .13
+	DO .2 <- .12
+	PLEASE DO (2000) NEXT
+	DO (230) NEXT
+	DO (242) NEXT
+(230)	DO (240) NEXT
+	DO (300) NEXT
+(240)	DO FORGET .3
+	DO RESUME #1
+(242)	DO .1 <- .13
+	DO .2 <- .12
+	DO (2010) NEXT
+	DO (250) NEXT
+	PLEASE READ OUT ,2
+	DO READ OUT ,1
+	DO (210) NEXT
+(250)	DO (260) NEXT
+	PLEASE READ OUT ,3
+	DO READ OUT ,1
+	DO (210) NEXT
+(260)	DO FORGET .3
+	DO RESUME #1
+(300)	DO READ OUT ,6
+	DO READ OUT .11
+(301)	DO READ OUT ,7
+(550)	DO .9 <- #8
+	DO .9 <- #1
+
+(2000)	DO (1010) NEXT
+	DO .1 <- .3
+	DO .2 <- #64173
+	PLEASE DO (1039) NEXT
+	DO .1 <- .3
+	PLEASE DO (1039) NEXT
+	DO .1 <- .4
+	DO .2 <- #1
+	PLEASE DO (1010) NEXT
+	PLEASE RESUME #1
+(2010)	DO (1010) NEXT
+	DO .1 <- .3
+	DO .2 <- .3
+	PLEASE DO (1009) NEXT
+	DO .1 <- .4
+	DO .2 <- #1
+	DO (1010) NEXT
+	PLEASE RESUME #1
+(909)	DO COME FROM (301)
+	PLEASE GIVE UP

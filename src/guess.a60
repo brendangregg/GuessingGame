@@ -1,0 +1,45 @@
+begin
+        comment
+		guess.a60 - guessing game in Algol 60
+		
+		This is written to demonstrate this language versus 
+		the same program written in other languages.
+
+		NOTE: This is one of many variants of Algol 60.
+		
+		16-Oct-2004	Brendan Gregg	Created this. 
+        ;
+
+        integer answer, num, guess;
+	num := 0;
+
+	outstring (1,"guess.a60 - Guess a number between 1 and 100\n\n");
+
+	comment ### Generate random number ;
+	answer := rand * 99 + 1;
+
+	comment ### Play game ;
+	loop:
+		num := num + 1;
+		outstring (1, "Enter guess");
+		outinteger (1, num);
+		outstring (1, ": ");
+		inreal (0, guess);
+
+		if guess < answer then outstring (1, "Higher...\n");
+		if guess > answer then outstring (1, "Lower...\n");
+		if guess notequal answer then goto loop;
+                
+	outstring (1, "Correct! That took");
+	outinteger (1, num);
+	outstring (1, "guesses.\n\n");
+
+
+	comment ### Save high score ;
+	comment
+		I've yet to figure out file I/O in Algol 60...
+		Perhaps files hadn't been invented yet?
+	;
+	comment ### Print high scores ;
+
+end

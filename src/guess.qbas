@@ -1,0 +1,44 @@
+' guess.qbas - guessing game in QBASIC
+'
+' This is written to demonstrate this language versus the same program
+' written in other languages.
+'
+' 25-Oct-2003   Brendan Gregg   Created this.
+
+scorefile$ = "highscores_qbas"
+num = 0
+
+PRINT "guess.qbas - Guess a number between 1 and 100"
+PRINT
+
+''' Generate Random number '''
+RANDOMIZE TIMER
+answer = INT(RND * 99) + 1
+
+''' Play Game '''
+DO
+        num = num + 1
+        PRINT "Enter guess"; num;
+        INPUT ": ", guess
+        IF (guess < answer) THEN PRINT "Higher..."
+        IF (guess > answer) THEN PRINT "Lower..."
+LOOP UNTIL guess = answer
+PRINT "Correct! That took"; num; "guesses"
+PRINT
+
+''' Save high score '''
+INPUT "Please enter your name: ", name$
+OPEN scorefile$ FOR APPEND AS #1
+PRINT #1, name$, num
+CLOSE #1
+
+''' Print high scores '''
+PRINT
+PRINT "Previous high scores,"
+OPEN scorefile$ FOR INPUT AS #2
+DO WHILE NOT EOF(2)
+        INPUT #2, line$
+        PRINT line$
+LOOP
+CLOSE #2
+

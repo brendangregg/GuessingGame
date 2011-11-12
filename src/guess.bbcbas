@@ -1,0 +1,45 @@
+    1 REM guess.bbcbas - guessing game in BBC BASIC
+    2 REM
+    3 REM This is written to demonstrate this language versus the same program
+    4 REM written in other languages.
+    5 REM
+    6 REM 17-Oct-2004   Brendan Gregg   Created this.
+      
+   10 scorefile$ = "highscores_bbcbas."
+   20 num = 0
+      
+   30 PRINT "guess.bbcbas - Guess a number between 1 and 100"
+   40 PRINT
+      
+   50 REM Generate Random number
+   60 answer = RND(100)
+      
+  100 REM Play Game
+  110 num = num + 1
+  120 PRINT "Enter guess "; num;
+  130 INPUT ": ", guess
+  140 IF (guess < answer) THEN PRINT "Higher..."
+  150 IF (guess > answer) THEN PRINT "Lower..."
+  160 IF guess <> answer THEN GOTO 110
+  200 PRINT "Correct! That took "; num; " guesses"
+  210 PRINT
+      
+  300 REM Save high score
+  310 INPUT "Please enter your name: "; name$
+  320 FILE=OPENUP(scorefile$)
+  330 INPUT#FILE, seek$
+  340 IF NOT EOF#(FILE) GOTO 330
+  350 BPUT#FILE, name$;
+  360 BPUT#FILE, " ";
+  370 PRINT#FILE, STR$(num)
+  380 CLOSE#FILE
+      
+  400 REM Print high scores
+  410 PRINT
+  420 PRINT "Previous high scores,"
+  430 FILE=OPENIN(scorefile$)
+  440 INPUT#FILE, line$
+  450 PRINT line$
+  460 IF NOT EOF#(FILE) GOTO 440
+  470 CLOSE#FILE
+      
