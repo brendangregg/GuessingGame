@@ -16,6 +16,7 @@ randomize()
 
 let
   answer = rand(99)+1  # For nim 0.17 or older, use random(100)+1 instead
+const
   scorefile = "highscores_nim"
 var
   guess = -1
@@ -30,7 +31,7 @@ while guess != answer:
   guess = parseInt(readLine(stdin))
   if guess < answer:
     echo("Higher...")
-  else:
+  elif guess > answer:
     echo("Lower...")
 
 echo("Correct! That took ", num, " guesses.\n")
